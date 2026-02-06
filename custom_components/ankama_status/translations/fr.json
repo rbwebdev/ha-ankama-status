@@ -1,0 +1,20 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuration Ankama Status",
+        "description": "Configurez l'intégration pour surveiller les serveurs de jeu Ankama",
+        "data": {
+          "game_filter": "Filtrer par jeu",
+          "scan_interval": "Intervalle de mise à jour (secondes)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter à l'API Ankama"
+    },
+    "abort": {
+      "already_configured": "Cette intégration est déjà configurée"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "domain": "ankama_status",
+  "name": "Ankama Game Servers Status",
+  "documentation": "https://github.com/rbwebdev/ha-ankama-status",
+  "codeowners": ["@rbwebdev"],
+  "requirements": [],
+  "version": "1.0.0",
+  "config_flow": true,
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/rbwebdev/ha-ankama-status/issues"
+}

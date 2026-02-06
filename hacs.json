@@ -1,0 +1,6 @@
+{
+  "name": "Ankama Game Servers Status",
+  "render_readme": true,
+  "filename": "ankama_status",
+  "homeassistant": "2023.1.0"
+}
