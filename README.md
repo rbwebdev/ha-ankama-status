@@ -2,93 +2,93 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 
-🇬🇧 [English version](README_EN.md)
+🇫🇷 [Version française](README_FR.md)
 
-Intégration Home Assistant pour surveiller l'état des serveurs de jeu Ankama (Dofus 3, Wakfu, Waven, Dofus Touch, Dofus Retro).
+Home Assistant custom integration to monitor Ankama game server statuses (Dofus 3, Wakfu, Waven, Dofus Touch, Dofus Retro).
 
-## 🎮 Fonctionnalités
+## 🎮 Features
 
-- ✅ Surveillance en temps réel de tous les serveurs Ankama
-- ✅ Un sensor par serveur de jeu
-- ✅ États : Up, Maintenance, Down
-- ✅ Attributs détaillés : noms multilingues, tags, type de jeu
-- ✅ Mise à jour configurable (par défaut 5 minutes)
-- ✅ Filtrage par jeu (optionnel)
-- ✅ Automatisations basées sur les changements d'état
-- ✅ Groupement par jeu dans l'interface
+- ✅ Real-time monitoring of all Ankama servers
+- ✅ One sensor per game server
+- ✅ States: Up, Maintenance, Down
+- ✅ Detailed attributes: multilingual names, tags, game type
+- ✅ Configurable update interval (default 5 minutes)
+- ✅ Optional game filtering
+- ✅ Automations based on state changes
+- ✅ Grouped by game in the UI
 
 ## 📦 Installation
 
-### Via HACS (recommandé)
+### Via HACS (recommended)
 
-1. Ouvrez HACS dans Home Assistant
-2. Cliquez sur "Integrations"
-3. Cliquez sur les 3 points en haut à droite et sélectionnez "Custom repositories"
-4. Ajoutez l'URL de ce repository : `https://github.com/rbwebdev/ha-ankama-status`
-5. Catégorie : Integration
-6. Cliquez sur "Ankama Game Servers Status" dans la liste
-7. Cliquez sur "Download"
-8. Redémarrez Home Assistant
+1. Open HACS in Home Assistant
+2. Click on "Integrations"
+3. Click the 3 dots in the top right corner and select "Custom repositories"
+4. Add this repository URL: `https://github.com/rbwebdev/ha-ankama-status`
+5. Category: Integration
+6. Click on "Ankama Game Servers Status" in the list
+7. Click "Download"
+8. Restart Home Assistant
 
-### Installation manuelle
+### Manual installation
 
-1. Téléchargez ce repository
-2. Copiez le dossier `custom_components/ankama_status` dans votre dossier `config/custom_components/`
-3. Redémarrez Home Assistant
+1. Download this repository
+2. Copy the `custom_components/ankama_status` folder into your `config/custom_components/` directory
+3. Restart Home Assistant
 
 ## ⚙️ Configuration
 
-### Via l'interface utilisateur (recommandé)
+### Via the UI (recommended)
 
-1. Allez dans `Paramètres` > `Appareils et services`
-2. Cliquez sur `+ Ajouter une intégration`
-3. Recherchez "Ankama"
-4. Configurez les options :
-   - **Filtrer par jeu** : Choisissez un jeu spécifique ou "Tous les jeux"
-   - **Intervalle de mise à jour** : Fréquence de rafraîchissement (60-3600 secondes, défaut : 300)
+1. Go to `Settings` > `Devices & Services`
+2. Click `+ Add Integration`
+3. Search for "Ankama"
+4. Configure options:
+   - **Filter by game**: Choose a specific game or "All games"
+   - **Update interval**: Refresh frequency (60-3600 seconds, default: 300)
 
-### Options de configuration
+### Configuration options
 
-| Option | Description | Défaut |
-|--------|-------------|--------|
-| `game_filter` | Filtrer les serveurs par jeu (`all`, `dofus2`, `wakfu`, `waven`, `dofusTouch`, `dofusRetro`) | `all` |
-| `scan_interval` | Intervalle de mise à jour en secondes | `300` |
+| Option | Description | Default |
+|--------|-------------|---------|
+| `game_filter` | Filter servers by game (`all`, `dofus2`, `wakfu`, `waven`, `dofusTouch`, `dofusRetro`) | `all` |
+| `scan_interval` | Update interval in seconds | `300` |
 
-## 🎯 Utilisation
+## 🎯 Usage
 
-### Sensors créés
+### Created sensors
 
-L'intégration crée automatiquement un sensor pour chaque serveur de jeu détecté. Les sensors sont nommés selon le format :
+The integration automatically creates one sensor per detected game server. Sensors are named as follows:
 ```
 sensor.dofus2_brial
 sensor.wakfu_ogrest
 sensor.waven_europe
 ```
 
-### États possibles
+### Possible states
 
-- `Up` : Serveur en ligne
-- `Maintenance` : Serveur en maintenance
-- `Down` : Serveur hors ligne
+- `Up`: Server online
+- `Maintenance`: Server under maintenance
+- `Down`: Server offline
 
-### Attributs des sensors
+### Sensor attributes
 
-Chaque sensor possède les attributs suivants :
-- `server_name_en` : Nom en anglais
-- `server_name_fr` : Nom en français
-- `server_name_es` : Nom en espagnol
-- `server_name_de` : Nom en allemand
-- `server_name_pt` : Nom en portugais
-- `game` : Type de jeu (dofus2, wakfu, etc.)
-- `tags` : Liste des tags associés
+Each sensor has the following attributes:
+- `server_name_en`: Name in English
+- `server_name_fr`: Name in French
+- `server_name_es`: Name in Spanish
+- `server_name_de`: Name in German
+- `server_name_pt`: Name in Portuguese
+- `game`: Game type (dofus2, wakfu, etc.)
+- `tags`: Associated tags list
 
-## 🤖 Exemples d'automatisations
+## 🤖 Automation examples
 
-### Notification quand un serveur revient en ligne
+### Notification when a server comes back online
 
 ```yaml
 automation:
-  - alias: "Notification serveur Dofus en ligne"
+  - alias: "Dofus server online notification"
     trigger:
       - platform: state
         entity_id: sensor.dofus2_brial
@@ -97,15 +97,15 @@ automation:
     action:
       - service: notify.mobile_app
         data:
-          title: "🎮 Serveur Dofus"
-          message: "Le serveur Brial est de nouveau en ligne !"
+          title: "🎮 Dofus Server"
+          message: "Server Brial is back online!"
 ```
 
-### Notification pour tous les serveurs Wakfu
+### Notification for all Wakfu servers
 
 ```yaml
 automation:
-  - alias: "Notification serveurs Wakfu"
+  - alias: "Wakfu servers notification"
     trigger:
       - platform: state
         entity_id:
@@ -116,15 +116,15 @@ automation:
     action:
       - service: notify.mobile_app
         data:
-          title: "🎮 Serveur Wakfu"
-          message: "Le serveur {{ trigger.to_state.name }} est en ligne !"
+          title: "🎮 Wakfu Server"
+          message: "Server {{ trigger.to_state.name }} is online!"
 ```
 
-### Alerte si un serveur est hors ligne
+### Alert if a server goes offline
 
 ```yaml
 automation:
-  - alias: "Alerte serveur hors ligne"
+  - alias: "Server offline alert"
     trigger:
       - platform: state
         entity_id: sensor.dofus2_brial
@@ -132,15 +132,15 @@ automation:
     action:
       - service: persistent_notification.create
         data:
-          title: "⚠️ Serveur hors ligne"
-          message: "Le serveur {{ trigger.to_state.name }} est hors ligne depuis {{ relative_time(trigger.to_state.last_changed) }}"
+          title: "⚠️ Server offline"
+          message: "Server {{ trigger.to_state.name }} has been offline since {{ relative_time(trigger.to_state.last_changed) }}"
 ```
 
-### Carte Lovelace pour afficher tous les serveurs
+### Lovelace card to display all servers
 
 ```yaml
 type: entities
-title: Serveurs Ankama
+title: Ankama Servers
 entities:
   - entity: sensor.dofus2_brial
   - entity: sensor.dofus2_mikhal
@@ -149,7 +149,7 @@ entities:
 state_color: true
 ```
 
-### Carte conditionnelle (afficher uniquement les serveurs en maintenance)
+### Conditional card (show only servers under maintenance)
 
 ```yaml
 type: conditional
@@ -158,35 +158,35 @@ conditions:
     state: Maintenance
 card:
   type: entities
-  title: ⚠️ Serveurs en maintenance
+  title: ⚠️ Servers under maintenance
   entities:
     - sensor.dofus2_brial
 ```
 
-## 🔧 Développement
+## 🔧 Development
 
-### Structure du projet
+### Project structure
 
 ```
 custom_components/ankama_status/
-├── __init__.py           # Point d'entrée de l'intégration
-├── config_flow.py        # Configuration via l'UI
-├── const.py              # Constantes
-├── manifest.json         # Métadonnées de l'intégration
-├── sensor.py             # Logique des sensors
-├── strings.json          # Traductions (anglais)
+├── __init__.py           # Integration entry point
+├── config_flow.py        # UI configuration
+├── const.py              # Constants
+├── manifest.json         # Integration metadata
+├── sensor.py             # Sensor logic
+├── strings.json          # Translations (English)
 └── translations/
-    └── fr.json          # Traductions (français)
+    └── fr.json          # Translations (French)
 ```
 
-### API utilisée
+### API used
 
-L'intégration utilise l'API publique d'Ankama :
+The integration uses the public Ankama API:
 ```
 https://status.cdn.ankama.com/export.json
 ```
 
-Format de réponse :
+Response format:
 ```json
 [
   {
@@ -203,9 +203,9 @@ Format de réponse :
 ]
 ```
 
-## 🐛 Débogage
+## 🐛 Debugging
 
-Pour activer les logs de débogage, ajoutez dans votre `configuration.yaml` :
+To enable debug logging, add to your `configuration.yaml`:
 
 ```yaml
 logger:
@@ -216,27 +216,30 @@ logger:
 
 ## 📝 Changelog
 
+### Version 1.0.1
+- 📄 English README is now the primary README (French version moved to README_FR.md)
+
 ### Version 1.0.0
-- 🎉 Version initiale
-- ✅ Support de tous les jeux Ankama
-- ✅ Configuration via l'UI
-- ✅ Mise à jour automatique
-- ✅ Traductions FR/EN
+- 🎉 Initial release
+- ✅ Support for all Ankama games
+- ✅ UI configuration
+- ✅ Automatic updates
+- ✅ FR/EN translations
 
-## 🤝 Contributions
+## 🤝 Contributing
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
+Contributions are welcome! Feel free to open an issue or a pull request.
 
-## 📄 Licence
+## 📄 License
 
 MIT License
 
-## 👏 Crédits
+## 👏 Credits
 
-- Données fournies par [Ankama](https://www.ankama.com)
-- Développé pour [Home Assistant](https://www.home-assistant.io)
-- Codé avec [Claude](https://claude.ai)
+- Data provided by [Ankama](https://www.ankama.com)
+- Built for [Home Assistant](https://www.home-assistant.io)
+- Coded with [Claude](https://claude.ai)
 
 ## ⚠️ Disclaimer
 
-Cette intégration n'est pas officielle et n'est pas affiliée à Ankama. Elle utilise l'API publique d'Ankama pour fournir des informations sur l'état des serveurs.
+This integration is unofficial and is not affiliated with Ankama. It uses the public Ankama API to provide server status information.
